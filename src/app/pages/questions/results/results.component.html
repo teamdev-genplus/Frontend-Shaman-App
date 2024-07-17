@@ -1,0 +1,133 @@
+<div class="result-container">
+  <div class="result-modal">
+    <h1 class="title-result">
+      <span class="user-name"
+        ><span class="user-hi">¡HOLA!</span>,
+        {{ userResults.userProfile.user_name }}
+      </span>
+      <span>TU PREDICCION SEGUN LA IA</span>
+    </h1>
+
+    <div class="result-details-container">
+      <div class="result-resume-container">
+        <div class="result-graphs">
+          @for (item of userResults.skill; track item.id_skill) {
+          <div class="result-graphs-item">
+            <span>{{ item.skill_name }}</span>
+            <div class="result-bar-item-container">
+              <div
+                class="result-bar-item-content"
+                [style.width]="item.final_score + '%'"
+                [ngClass]="{
+                  'bg-color-1': item.id_skill === 1|| item.id_skill === 2,
+                  'bg-color-5': item.id_skill === 3|| item.id_skill === 7,
+                  'bg-color-3': item.id_skill === 4|| item.id_skill === 8,
+                  'bg-color-2': item.id_skill === 5|| item.id_skill === 9 || item.id_skill === 12,
+                  'bg-color-4': item.id_skill === 6|| item.id_skill === 10 ||  item.id_skill === 11,
+                }"
+              >
+                <div class="result-bar-item-percentage">
+                  {{ item.final_score }}
+                </div>
+              </div>
+            </div>
+          </div>
+          }
+        </div>
+
+        <div class="img-result">
+          <img
+            src="{{ path_image }}"
+            alt="{{ userResults.personType.person_type_name }}"
+          />
+        </div>
+      </div>
+
+      <div>
+        <div class="skills-result-container">
+          <div class="skill-item first-skill">
+            <div class="skill-percentage-container">
+              <app-icon-result class="icon-result mx-auto max-lg:size-[80px]" />
+              <span class="skill-percentage">
+                {{ userResults.result_developer }}%</span
+              >
+            </div>
+
+            <div class="person-type-container">Desarrollador</div>
+          </div>
+
+          <div class="skill-item second-skill">
+            <div class="skill-percentage-container">
+              <app-icon-result class="icon-result mx-auto max-lg:size-[80px]" />
+              <span class="skill-percentage">
+                {{ userResults.result_manager }}%</span
+              >
+            </div>
+
+            <div class="person-type-container">Gestor</div>
+          </div>
+
+          <div class="skill-item third-skill">
+            <div class="skill-percentage-container">
+              <app-icon-result class="icon-result mx-auto max-lg:size-[80px]" />
+              <span class="skill-percentage">
+                {{ userResults.result_executor }}%</span
+              >
+            </div>
+
+            <div class="person-type-container">Ejecutor</div>
+          </div>
+        </div>
+        <div class="result-description">
+          <p>
+            {{ description }}
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <footer class="footer-results">
+      <img
+        src="../../../../assets/images/try-again-img.svg"
+        alt=""
+        class="try-again-img max-lg:hidden"
+        (click)="tryAgain()"
+      />
+      <img
+        src="../../../../assets/images/try-again-img-light.svg"
+        alt=""
+        class="try-again-img lg:hidden"
+        (click)="tryAgain()"
+      />
+      <div class="social-media-elements">
+        <span>COMPARTE TUS RESULTADOS</span>
+        <div class="social-media-elements-list">
+          @for (item of socialMediaList; track item.name) {
+          <div>
+            <a href="{{ item.url }}">
+              <img src="{{ item.path }}" alt="{{ item.name }}" />
+            </a>
+          </div>
+          }
+        </div>
+      </div>
+
+      <div class="social-media-container">
+        <img
+          src="../../../../assets/images/aecode-footer-img.svg"
+          class="max-lg:hidden"
+          alt=""
+        />
+        <img
+          src="../../../../assets/images/footer-img-light.svg"
+          class="second-img lg:hidden"
+          alt=""
+        />
+
+        <a href="https://aecode.ai/" target="_blank"
+          ><img src="../../../../assets/images/coming-soon-footer.svg" alt="" />
+        </a>
+      </div>
+    </footer>
+  </div>
+</div>

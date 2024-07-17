@@ -1,0 +1,26 @@
+<div class="questions-container">
+  <ol class="pagination-list">
+    @for (item of paginationList; track item) {
+    <app-pagination
+      [currentPage]="item"
+      (changePageEvent)="changePage($event)"
+      (click)="item.checked = !item.checked"
+    />
+    @if (item.id !== 4) {
+    <div class="pagination-line"></div>
+    } }
+  </ol>
+
+  <div class="questions-list flex flex-col text-center gap-y-5 pb-28">
+    @for (item of paginatedQuestions; track item.id_question) {
+    <app-question
+      [firstQuestion]="firstQuestion"
+      [questionItem]="item"
+      [answer_list]="item.answer"
+      (answerSelected)="addValueToAsnwer($event)"
+    />
+    }
+  </div>
+</div>
+
+<router-outlet />
